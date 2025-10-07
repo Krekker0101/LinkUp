@@ -281,8 +281,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email support@linkup.com or join our Discord server.
+For support, email krekker882@gmail.com or join our Discord server.
 
 ---
 
 **LinkUp** - Connecting teams, one message at a time. 🚀
+**My Portfolio** - (https://tajik-develop.kesug.com) you can find me there
