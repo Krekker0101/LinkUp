@@ -1,0 +1,1005 @@
+definitions:
+  handlers.AuthResponse:
+    properties:
+      token:
+        example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+        type: string
+      user:
+        $ref: '#/definitions/handlers.UserResponse'
+    type: object
+  handlers.CreateRoomRequest:
+    properties:
+      isPrivate:
+        example: false
+        type: boolean
+      name:
+        example: General Chat
+        type: string
+      slug:
+        example: general
+        type: string
+    required:
+    - name
+    - slug
+    type: object
+  handlers.ErrorResponse:
+    properties:
+      error:
+        example: Invalid request
+        type: string
+    type: object
+  handlers.LoginRequest:
+    properties:
+      login:
+        example: john_doe
+        type: string
+      password:
+        example: securepassword123
+        type: string
+    required:
+    - login
+    - password
+    type: object
+  handlers.MessageResponse:
+    properties:
+      createdAt:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+      id:
+        example: 1
+        type: integer
+      imageUrl:
+        example: https://example.com/image.jpg
+        type: string
+      reactions:
+        additionalProperties:
+          items:
+            type: integer
+          type: array
+        type: object
+      roomId:
+        example: 1
+        type: integer
+      text:
+        example: Hello everyone!
+        type: string
+      type:
+        example: text
+        type: string
+      userId:
+        example: 1
+        type: integer
+    type: object
+  handlers.RegisterRequest:
+    properties:
+      avatarUrl:
+        example: https://example.com/avatar.jpg
+        type: string
+      login:
+        example: john_doe
+        type: string
+      name:
+        example: John Doe
+        type: string
+      password:
+        example: securepassword123
+        type: string
+    required:
+    - login
+    - name
+    - password
+    type: object
+  handlers.RoomResponse:
+    properties:
+      id:
+        example: 1
+        type: integer
+      isPrivate:
+        example: false
+        type: boolean
+      name:
+        example: General Chat
+        type: string
+      ownerId:
+        example: 1
+        type: integer
+      slug:
+        example: general
+        type: string
+      unread:
+        example: 5
+        type: integer
+    type: object
+  handlers.SendMessageRequest:
+    properties:
+      imageUrl:
+        example: https://example.com/image.jpg
+        type: string
+      text:
+        example: Hello everyone!
+        type: string
+      type:
+        example: text
+        type: string
+    type: object
+  handlers.SuccessResponse:
+    properties:
+      ok:
+        example: true
+        type: boolean
+    type: object
+  handlers.UpdateProfileRequest:
+    properties:
+      avatarUrl:
+        example: https://example.com/new-avatar.jpg
+        type: string
+      name:
+        example: John Smith
+        type: string
+    type: object
+  handlers.UserResponse:
+    properties:
+      avatarUrl:
+        example: https://example.com/avatar.jpg
+        type: string
+      id:
+        example: 1
+        type: integer
+      lastSeen:
+        example: "2024-01-15T10:30:00Z"
+        type: string
+      login:
+        example: john_doe
+        type: string
+      name:
+        example: John Doe
+        type: string
+      online:
+        example: true
+        type: boolean
+    type: object
+  models.AdminDashboard:
+    properties:
+      activeUsers:
+        type: integer
+      filesUploaded:
+        type: integer
+      lastUpdated:
+        type: string
+      messagesToday:
+        type: integer
+      roomsCount:
+        type: integer
+      storageUsed:
+        type: integer
+      totalUsers:
+        type: integer
+    type: object
+  models.Analytics:
+    properties:
+      createdAt:
+        type: string
+      filesUploaded:
+        type: integer
+      id:
+        type: integer
+      lastActive:
+        type: string
+      loginCount:
+        type: integer
+      messagesSent:
+        type: integer
+      roomsJoined:
+        type: integer
+      timeSpentMinutes:
+        type: integer
+      updatedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  models.Mention:
+    properties:
+      createdAt:
+        type: string
+      id:
+        type: integer
+      mentionedBy:
+        type: integer
+      messageId:
+        type: integer
+      read:
+        type: boolean
+      updatedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  models.Poll:
+    properties:
+      anonymous:
+        type: boolean
+      createdAt:
+        type: string
+      expiresAt:
+        type: string
+      id:
+        type: integer
+      messageId:
+        type: integer
+      multipleChoice:
+        type: boolean
+      options:
+        items:
+          type: string
+        type: array
+      question:
+        type: string
+      totalVotes:
+        type: integer
+      updatedAt:
+        type: string
+      votes:
+        additionalProperties:
+          items:
+            type: integer
+          type: array
+        type: object
+    type: object
+  models.Role:
+    properties:
+      createdAt:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      isDefault:
+        type: boolean
+      name:
+        description: admin, moderator, user
+        type: string
+      permissions:
+        items:
+          type: string
+        type: array
+      updatedAt:
+        type: string
+    type: object
+  models.UserAchievement:
+    properties:
+      achievementId:
+        type: integer
+      completed:
+        type: boolean
+      completedAt:
+        type: string
+      createdAt:
+        type: string
+      id:
+        type: integer
+      progress:
+        type: integer
+      updatedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+  models.UserLevel:
+    properties:
+      badges:
+        items:
+          type: string
+        type: array
+      createdAt:
+        type: string
+      experience:
+        type: integer
+      id:
+        type: integer
+      level:
+        type: integer
+      nextLevelXp:
+        type: integer
+      title:
+        type: string
+      updatedAt:
+        type: string
+      userId:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /achievements:
+    get:
+      description: Возвращает список достижений пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.UserAchievement'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить достижения пользователя
+      tags:
+      - achievements
+  /admin/assign-role:
+    post:
+      consumes:
+      - application/json
+      description: Назначает роль пользователю в комнате или глобально
+      parameters:
+      - description: Данные назначения
+        in: body
+        name: assignment
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Назначить роль пользователю
+      tags:
+      - admin
+  /admin/dashboard:
+    get:
+      description: Возвращает общую статистику системы
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.AdminDashboard'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить дашборд администратора
+      tags:
+      - admin
+  /admin/roles:
+    get:
+      description: Возвращает список всех ролей в системе
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Role'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить все роли
+      tags:
+      - admin
+    post:
+      consumes:
+      - application/json
+      description: Создает новую роль в системе
+      parameters:
+      - description: Данные роли
+        in: body
+        name: role
+        required: true
+        schema:
+          $ref: '#/definitions/models.Role'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Role'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Создать роль
+      tags:
+      - admin
+  /analytics/me:
+    get:
+      description: Возвращает метрики использования пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Analytics'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить аналитику пользователя
+      tags:
+      - analytics
+  /auth/2fa/setup:
+    post:
+      consumes:
+      - application/json
+      description: Настраивает двухфакторную аутентификацию для пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Настроить 2FA
+      tags:
+      - auth
+  /auth/2fa/verify:
+    post:
+      consumes:
+      - application/json
+      description: Подтверждает настройку 2FA с помощью кода
+      parameters:
+      - description: Код подтверждения
+        in: body
+        name: code
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Подтвердить 2FA
+      tags:
+      - auth
+  /level:
+    get:
+      description: Возвращает информацию об уровне пользователя
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.UserLevel'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить уровень пользователя
+      tags:
+      - achievements
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Вход в систему с логином и паролем
+      parameters:
+      - description: Данные для входа
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Авторизация пользователя
+      tags:
+      - auth
+  /mentions:
+    get:
+      description: Возвращает список упоминаний пользователя
+      parameters:
+      - default: 20
+        description: Лимит
+        in: query
+        name: limit
+        type: integer
+      - default: 0
+        description: Смещение
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Mention'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить упоминания пользователя
+      tags:
+      - mentions
+  /mentions/{id}/read:
+    post:
+      description: Отмечает упоминание как прочитанное
+      parameters:
+      - description: ID упоминания
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Отметить упоминание как прочитанное
+      tags:
+      - mentions
+  /polls/{id}/vote:
+    post:
+      consumes:
+      - application/json
+      description: Голосует в опросе
+      parameters:
+      - description: ID опроса
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Голос
+        in: body
+        name: vote
+        required: true
+        schema:
+          additionalProperties:
+            type: string
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Голосовать в опросе
+      tags:
+      - messages
+  /register:
+    post:
+      consumes:
+      - application/json
+      description: Создает нового пользователя в системе
+      parameters:
+      - description: Данные пользователя
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.AuthResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      summary: Регистрация пользователя
+      tags:
+      - auth
+  /rooms:
+    get:
+      description: Возвращает список всех доступных комнат
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.RoomResponse'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить список комнат
+      tags:
+      - rooms
+    post:
+      consumes:
+      - application/json
+      description: Создает новую комнату для чата
+      parameters:
+      - description: Данные комнаты
+        in: body
+        name: room
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.CreateRoomRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.RoomResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Создать комнату
+      tags:
+      - rooms
+  /rooms/{id}/join:
+    post:
+      description: Присоединяет текущего пользователя к указанной комнате
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Присоединиться к комнате
+      tags:
+      - rooms
+  /rooms/{id}/leave:
+    post:
+      description: Удаляет текущего пользователя из указанной комнаты
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Покинуть комнату
+      tags:
+      - rooms
+  /rooms/{id}/messages:
+    post:
+      consumes:
+      - application/json
+      description: Отправляет новое сообщение в указанную комнату
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Текст сообщения
+        in: body
+        name: message
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.SendMessageRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/handlers.MessageResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Отправить сообщение
+      tags:
+      - messages
+  /rooms/{id}/polls:
+    post:
+      consumes:
+      - application/json
+      description: Создает опрос в комнате
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Данные опроса
+        in: body
+        name: poll
+        required: true
+        schema:
+          additionalProperties: true
+          type: object
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Poll'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Создать опрос
+      tags:
+      - messages
+  /rooms/{id}/read:
+    post:
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties:
+              type: boolean
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties:
+              type: string
+            type: object
+      security:
+      - BearerAuth: []
+      summary: Отметить комнату как прочитанную
+      tags:
+      - rooms
+  /rooms/{id}/users:
+    get:
+      description: Возвращает список всех пользователей в указанной комнате
+      parameters:
+      - description: ID комнаты
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/handlers.UserResponse'
+            type: array
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Список пользователей в комнате
+      tags:
+      - rooms
+  /user/me:
+    get:
+      description: Возвращает информацию о текущем авторизованном пользователе
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Получить профиль текущего пользователя
+      tags:
+      - user
+    put:
+      consumes:
+      - application/json
+      description: Обновляет информацию профиля текущего пользователя
+      parameters:
+      - description: Данные для обновления
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/handlers.UpdateProfileRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handlers.UserResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Обновить профиль пользователя
+      tags:
+      - user
+swagger: "2.0"
